@@ -60,11 +60,10 @@ STEP_ID_OPTIONAL_STEPS = {
 }
 
 
-_FlowContextT = TypeVar("_FlowContextT", bound="FlowContext", default="FlowContext")
+_FlowContextT = TypeVar("_FlowContextT", bound="FlowContext")
 _FlowResultT = TypeVar(
-    "_FlowResultT", bound="FlowResult[Any, Any]", default="FlowResult"
-)
-_HandlerT = TypeVar("_HandlerT", default=str)
+    "_FlowResultT", bound="FlowResult[Any, Any]")
+_HandlerT = TypeVar("_HandlerT")
 
 
 @dataclass(slots=True)

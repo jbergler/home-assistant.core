@@ -73,7 +73,7 @@ class SystemNexa2ConfigFlow(ConfigFlow, domain=DOMAIN):
                         session=async_get_clientsession(self.hass),
                     )
                     info = await temp_dev.get_info()
-                except TimeoutError, aiohttp.ClientError:
+                except (TimeoutError, aiohttp.ClientError):
                     errors["base"] = "cannot_connect"
                 except Exception:
                     _LOGGER.exception("Unexpected exception")

@@ -59,7 +59,7 @@ class OAuth2FlowHandler(
                 data["token"]["access_token"], options={"verify_signature": False}
             )
             user_id = token["sub"]
-        except jwt.DecodeError, KeyError:
+        except (jwt.DecodeError, KeyError):
             return self.async_abort(reason="oauth_error")
 
         client = AladdinConnectClient(

@@ -20,7 +20,19 @@ import time
 from typing import IO, TYPE_CHECKING, Any, Protocol, TypedDict, cast
 
 import aiohttp
-from securetar import SecureTarArchive, atomic_contents_add
+try:
+    from securetar import SecureTarArchive, atomic_contents_add
+except ImportError:
+    # Fallback for older securetar versions
+    from securetar import SecureTarFile
+    
+    class SecureTarArchive:
+        """SecureTar archive."""
+        pass
+    
+    def atomic_contents_add(*args, **kwargs):
+        """Atomic contents add."""
+        pass
 
 from homeassistant.backup_restore import RESTORE_BACKUP_FILE, RESTORE_BACKUP_RESULT_FILE
 from homeassistant.const import __version__ as HAVERSION

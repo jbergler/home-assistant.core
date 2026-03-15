@@ -1667,7 +1667,7 @@ def mock_platform(
     module_cache[platform_path] = module or Mock()
 
 
-def async_capture_events[_DataT: Mapping[str, Any] = dict[str, Any]](
+def async_capture_events[_DataT: Mapping[str, Any]](
     hass: HomeAssistant, event_name: EventType[_DataT] | str
 ) -> list[Event[_DataT]]:
     """Create a helper that captures events."""

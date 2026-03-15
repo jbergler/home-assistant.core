@@ -37,7 +37,7 @@ from .typing import UNDEFINED, UndefinedType
 REQUEST_REFRESH_DEFAULT_COOLDOWN = 10
 REQUEST_REFRESH_DEFAULT_IMMEDIATE = True
 
-_DataT = TypeVar("_DataT", default=dict[str, Any])
+_DataT = TypeVar("_DataT")
 
 
 class UpdateFailed(HomeAssistantError):
@@ -663,9 +663,7 @@ class BaseCoordinatorEntity[
 
 
 class CoordinatorEntity[
-    _DataUpdateCoordinatorT: DataUpdateCoordinator[Any] = DataUpdateCoordinator[
-        dict[str, Any]
-    ]
+    _DataUpdateCoordinatorT: DataUpdateCoordinator[Any]
 ](BaseCoordinatorEntity[_DataUpdateCoordinatorT]):
     """A class for entities using DataUpdateCoordinator."""
 

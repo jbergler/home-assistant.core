@@ -62,7 +62,7 @@ async def async_update_entity(hass: HomeAssistant, entity_id: str) -> None:
     await entity_obj.async_update_ha_state(True)
 
 
-class EntityComponent[_EntityT: entity.Entity = entity.Entity]:
+class EntityComponent[_EntityT: entity.Entity]:
     """The EntityComponent manages platforms that manage entities.
 
     An example of an entity component is 'light', which manages platforms such

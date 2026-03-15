@@ -95,7 +95,7 @@ class MultiFactorAuthModule:
         raise NotImplementedError
 
 
-class SetupFlow[_MultiFactorAuthModuleT: MultiFactorAuthModule = MultiFactorAuthModule](
+class SetupFlow[_MultiFactorAuthModuleT: MultiFactorAuthModule](
     data_entry_flow.FlowHandler
 ):
     """Handler for the setup flow."""

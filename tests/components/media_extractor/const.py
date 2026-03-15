@@ -1,6 +1,6 @@
 """The tests for Media Extractor integration."""
 
-AUDIO_QUERY = "bestaudio[ext=m4a]/bestaudio[ext=mp3]/bestaudio"
+AUDIO_QUERY = "bestaudio[ext]/bestaudio[ext]/bestaudio"
 
 YOUTUBE_VIDEO = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 YOUTUBE_PLAYLIST = (

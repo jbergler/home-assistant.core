@@ -6,7 +6,7 @@ derived from EntityDescription and sub classes thereof.
 
 from __future__ import annotations
 
-from annotationlib import Format, get_annotations
+from typing import get_type_hints
 import dataclasses
 import sys
 from typing import TYPE_CHECKING, Any, cast, dataclass_transform
@@ -20,7 +20,7 @@ def _class_fields(cls: type, kw_only: bool) -> list[tuple[str, Any, Any]]:
 
     Extracted from dataclasses._process_class.
     """
-    cls_annotations = get_annotations(cls, format=Format.FORWARDREF)
+    cls_annotations = get_type_hints(cls, include_extras=True)
 
     cls_fields: list[dataclasses.Field[Any]] = []
 
@@ -97,13 +97,18 @@ class FrozenOrThawed(type):
             for parent in cls.__mro__[::-1]:
                 if parent is object:
                     continue
-                annotations |= get_annotations(parent, format=Format.FORWARDREF)
+                try:
+                    parent_annotations = get_type_hints(parent, include_extras=True)
+                    annotations |= parent_annotations
+                except Exception:
+                    # Fallback to __annotations__ if get_type_hints fails
+                    if hasattr(parent, '__annotations__'):
+                        annotations |= parent.__annotations__
 
             if "__annotations__" in cls.__dict__:
                 cls.__annotations__ = annotations
             else:
-
-                def wrapped_annotate(format: Format) -> dict:
+                def wrapped_annotate(format: Any = None) -> dict:
                     return annotations
 
                 cls.__annotate__ = wrapped_annotate

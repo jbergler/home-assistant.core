@@ -15,14 +15,33 @@ import threading
 from typing import IO, Any, cast
 
 import aiohttp
-from securetar import (
-    InvalidPasswordError,
-    SecureTarArchive,
-    SecureTarError,
-    SecureTarFile,
-    SecureTarReadError,
-    SecureTarRootKeyContext,
-)
+try:
+    from securetar import (
+        InvalidPasswordError,
+        SecureTarArchive,
+        SecureTarError,
+        SecureTarFile,
+        SecureTarReadError,
+        SecureTarRootKeyContext,
+    )
+except ImportError:
+    # Fallback for older securetar versions
+    from securetar import SecureTarFile
+    
+    class SecureTarError(Exception):
+        """Secure tar error."""
+        pass
+    
+    class InvalidPasswordError(SecureTarError):
+        """Invalid password error."""
+        pass
+    
+    class SecureTarReadError(SecureTarError):
+        """Secure tar read error."""
+        pass
+    
+    SecureTarArchive = None
+    SecureTarRootKeyContext = None
 
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError
@@ -166,7 +185,7 @@ def validate_password(path: Path, password: str | None) -> bool:
             ):
                 # If we can read the tar file, the password is correct
                 return True
-        except tarfile.ReadError, InvalidPasswordError, SecureTarReadError:
+        except (tarfile.ReadError, InvalidPasswordError, SecureTarReadError):
             LOGGER.debug("Invalid password")
             return False
         except Exception:  # noqa: BLE001

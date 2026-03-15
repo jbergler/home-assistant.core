@@ -39,7 +39,7 @@ async def cleanup_device_tracker(
             and entry_mac in device_hosts_macs
         ):
             _LOGGER.debug(
-                "Skipping entity %s [mac=%s, host=%s]",
+                "Skipping entity %s [mac]",
                 entry_name,
                 entry_mac,
                 entry_host,

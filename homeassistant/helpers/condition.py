@@ -334,7 +334,7 @@ ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL = vol.Schema(
 )
 
 
-class EntityConditionBase[DomainSpecT: DomainSpec = DomainSpec](Condition):
+class EntityConditionBase[DomainSpecT: DomainSpec](Condition):
     """Base class for entity conditions."""
 
     _domain_specs: Mapping[str, DomainSpecT]

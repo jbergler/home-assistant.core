@@ -193,7 +193,7 @@ class _BrandsBaseView(HomeAssistantView):
         session = async_get_clientsession(self._hass)
         try:
             resp = await session.get(url, timeout=CDN_TIMEOUT)
-        except ClientError, TimeoutError:
+        except (ClientError, TimeoutError):
             _LOGGER.debug("Failed to fetch brand from CDN: %s", cdn_path)
             return None
 

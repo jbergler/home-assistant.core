@@ -336,7 +336,7 @@ ENTITY_STATE_TRIGGER_SCHEMA_FIRST_LAST = ENTITY_STATE_TRIGGER_SCHEMA.extend(
 )
 
 
-class EntityTriggerBase[DomainSpecT: DomainSpec = DomainSpec](Trigger):
+class EntityTriggerBase[DomainSpecT: DomainSpec](Trigger):
     """Trigger for entity state changes."""
 
     _domain_specs: Mapping[str, DomainSpecT]
@@ -593,7 +593,7 @@ def _get_numerical_value(
             return None
         try:
             return float(state.state)
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             # Entity state is not a valid number
             return None
     return entity_or_float
@@ -646,7 +646,7 @@ class EntityNumericalStateAttributeChangedTriggerBase(EntityNumericalStateBase):
 
         try:
             current_value = self._get_converter(state)(_attribute_value)
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             # Value is not a valid number, don't trigger
             return False
 
@@ -772,7 +772,7 @@ class EntityNumericalStateAttributeCrossedThresholdTriggerBase(
 
         try:
             current_value = self._get_converter(state)(_attribute_value)
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             # Value is not a valid number, don't trigger
             return False
 

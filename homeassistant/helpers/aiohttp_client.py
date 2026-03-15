@@ -14,8 +14,9 @@ from types import MappingProxyType
 from typing import TYPE_CHECKING, Any, Self
 
 import aiohttp
-from aiohttp import ClientMiddlewareType, hdrs, web
+from aiohttp import hdrs, web
 from aiohttp.hdrs import CONTENT_TYPE, USER_AGENT
+from aiohttp.typedefs import Middleware as ClientMiddlewareType
 from aiohttp.web_exceptions import HTTPBadGateway, HTTPGatewayTimeout
 from aiohttp_asyncmdnsresolver.api import AsyncDualMDNSResolver
 from yarl import URL

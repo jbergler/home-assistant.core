@@ -445,7 +445,7 @@ _GROUP_BY_KEY = attrgetter("change_type")
 
 
 @dataclass(slots=True, frozen=True)
-class _CollectionLifeCycle[_EntityT: Entity = Entity]:
+class _CollectionLifeCycle[_EntityT: Entity]:
     """Life cycle for a collection of entities."""
 
     domain: str
@@ -520,7 +520,7 @@ class _CollectionLifeCycle[_EntityT: Entity = Entity]:
 
 
 @callback
-def sync_entity_lifecycle[_EntityT: Entity = Entity](
+def sync_entity_lifecycle[_EntityT: Entity](
     hass: HomeAssistant,
     domain: str,
     platform: str,

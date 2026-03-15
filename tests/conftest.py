@@ -159,8 +159,7 @@ asyncio.set_event_loop_policy = lambda policy: None
 
 def pytest_addoption(parser: pytest.Parser) -> None:
     """Register custom pytest options."""
-    parser.addoption("--dburl", action="store", default="sqlite://")
-    parser.addoption("--drop-existing-db", action="store_const", const=True)
+    # Options handled by pytest-homeassistant-custom-component plugin
 
 
 def pytest_configure(config: pytest.Config) -> None:

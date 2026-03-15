@@ -30,7 +30,7 @@ from homeassistant.helpers.update_coordinator import (
 from .const import ATTRIBUTION, DOMAIN
 from .coordinator import RingDataCoordinator, RingListenCoordinator
 
-RingDeviceT = TypeVar("RingDeviceT", bound=RingGeneric, default=RingGeneric)
+RingDeviceT = TypeVar("RingDeviceT", bound=RingGeneric)
 
 _RingCoordinatorT = TypeVar(
     "_RingCoordinatorT",
